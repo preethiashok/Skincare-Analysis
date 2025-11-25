@@ -11,28 +11,28 @@
           extend: {
             colors: {
               primary: {
-                50: '#fff0f7',
-                100: '#ffe4f2',
-                200: '#ffc9e6',
-                300: '#ff9fd2',
-                400: '#ff66b5',
-                500: '#fa3e9e',
-                600: '#e61a83',
-                700: '#c20d68',
-                800: '#a10f58',
-                900: '#86124d',
+                50: '#fff0f6',
+                100: '#ffdeeb',
+                200: '#ffbfd9',
+                300: '#ff90c0',
+                400: '#ff529e',
+                500: '#f5227d', /* Barbie Pink */
+                600: '#e00a60',
+                700: '#bd044a',
+                800: '#9c063f',
+                900: '#820a38',
               },
               secondary: {
-                 50: '#f0f9ff',
-                 100: '#e0f2fe',
-                 200: '#bae6fd',
-                 300: '#7dd3fc',
-                 400: '#38bdf8',
-                 500: '#0ea5e9',
-                 600: '#0284c7',
-                 700: '#0369a1',
-                 800: '#075985',
-                 900: '#0c4a6e',
+                 50: '#f0fdfa',
+                 100: '#ccfbf1',
+                 200: '#99f6e4',
+                 300: '#5eead4',
+                 400: '#2dd4bf',
+                 500: '#14b8a6',
+                 600: '#0d9488',
+                 700: '#0f766e',
+                 800: '#115e59',
+                 900: '#134e4a',
               }
             },
             fontFamily: {
@@ -41,6 +41,7 @@
             animation: {
               'fade-in': 'fadeIn 0.5s ease-out',
               'fade-in-up': 'fadeInUp 0.5s ease-out',
+              'bounce-slow': 'bounce 3s infinite',
             },
             keyframes: {
               fadeIn: {
@@ -56,30 +57,31 @@
         },
       }
     </script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
       body {
         font-family: 'Inter', sans-serif;
       }
       /* Custom scrollbar for better aesthetics */
       ::-webkit-scrollbar {
-        width: 8px;
+        width: 10px;
       }
       ::-webkit-scrollbar-track {
-        background: #fdf2f8; 
+        background: #fff0f6; 
       }
       ::-webkit-scrollbar-thumb {
-        background: #fbcfe8; 
-        border-radius: 4px;
+        background: #ff90c0; 
+        border-radius: 5px;
+        border: 2px solid #fff0f6;
       }
       ::-webkit-scrollbar-thumb:hover {
-        background: #f472b6; 
+        background: #ff529e; 
       }
 
       /* Print styles for PDF export */
       @media print {
         @page {
-          margin: 1.5cm;
+          margin: 1cm;
           size: auto;
         }
         body {
@@ -99,9 +101,13 @@
           padding: 0 !important;
           margin: 0 !important;
         }
-        /* Ensure specific background colors print */
-        .bg-primary-50, .bg-secondary-50, .bg-slate-50, .bg-amber-50, .bg-indigo-50 {
-          border: 1px solid #e2e8f0; 
+        /* Improve readability for print */
+        .print-break-inside-avoid {
+          break-inside: avoid;
+        }
+        .shadow-xl, .shadow-lg, .shadow-md {
+          box-shadow: none !important;
+          border: 1px solid #e5e7eb !important;
         }
       }
     </style>
