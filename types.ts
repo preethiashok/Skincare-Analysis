@@ -28,6 +28,7 @@ export interface MarketProduct {
   name: string;
   brand: string;
   approxPrice: string;
+  substitutes: string[];
 }
 
 export interface ProductRecommendation {
@@ -46,6 +47,12 @@ export interface RoutineResponse {
   eveningRoutine: ProductRecommendation[];
   dietaryTips: string[];
   avoidIngredients: string[];
+}
+
+export interface SavedRoutine {
+  profile: UserProfile;
+  routine: RoutineResponse;
+  savedAt: string;
 }
 
 export enum AppState {

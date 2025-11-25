@@ -11,29 +11,46 @@
           extend: {
             colors: {
               primary: {
-                50: '#f0fdfa',
-                100: '#ccfbf1',
-                200: '#99f6e4',
-                300: '#5eead4',
-                400: '#2dd4bf',
-                500: '#14b8a6',
-                600: '#0d9488',
-                700: '#0f766e',
-                800: '#115e59',
-                900: '#134e4a',
+                50: '#fff0f7',
+                100: '#ffe4f2',
+                200: '#ffc9e6',
+                300: '#ff9fd2',
+                400: '#ff66b5',
+                500: '#fa3e9e',
+                600: '#e61a83',
+                700: '#c20d68',
+                800: '#a10f58',
+                900: '#86124d',
               },
               secondary: {
-                 50: '#fdf2f8',
-                 100: '#fce7f3',
-                 200: '#fbcfe8',
-                 300: '#f9a8d4',
-                 400: '#f472b6',
-                 500: '#ec4899',
-                 600: '#db2777',
+                 50: '#f0f9ff',
+                 100: '#e0f2fe',
+                 200: '#bae6fd',
+                 300: '#7dd3fc',
+                 400: '#38bdf8',
+                 500: '#0ea5e9',
+                 600: '#0284c7',
+                 700: '#0369a1',
+                 800: '#075985',
+                 900: '#0c4a6e',
               }
             },
             fontFamily: {
               sans: ['Inter', 'system-ui', 'sans-serif'],
+            },
+            animation: {
+              'fade-in': 'fadeIn 0.5s ease-out',
+              'fade-in-up': 'fadeInUp 0.5s ease-out',
+            },
+            keyframes: {
+              fadeIn: {
+                '0%': { opacity: '0' },
+                '100%': { opacity: '1' },
+              },
+              fadeInUp: {
+                '0%': { opacity: '0', transform: 'translateY(10px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
+              },
             },
           },
         },
@@ -49,14 +66,43 @@
         width: 8px;
       }
       ::-webkit-scrollbar-track {
-        background: #f1f1f1; 
+        background: #fdf2f8; 
       }
       ::-webkit-scrollbar-thumb {
-        background: #cbd5e1; 
+        background: #fbcfe8; 
         border-radius: 4px;
       }
       ::-webkit-scrollbar-thumb:hover {
-        background: #94a3b8; 
+        background: #f472b6; 
+      }
+
+      /* Print styles for PDF export */
+      @media print {
+        @page {
+          margin: 1.5cm;
+          size: auto;
+        }
+        body {
+          -webkit-print-color-adjust: exact !important;
+          print-color-adjust: exact !important;
+          background: white !important;
+        }
+        .no-print {
+          display: none !important;
+        }
+        header, footer {
+          display: none !important;
+        }
+        main {
+          width: 100% !important;
+          max-width: none !important;
+          padding: 0 !important;
+          margin: 0 !important;
+        }
+        /* Ensure specific background colors print */
+        .bg-primary-50, .bg-secondary-50, .bg-slate-50, .bg-amber-50, .bg-indigo-50 {
+          border: 1px solid #e2e8f0; 
+        }
       }
     </style>
   <script type="importmap">
@@ -71,7 +117,7 @@
 }
 </script>
 </head>
-  <body class="bg-slate-50 text-slate-900 antialiased selection:bg-primary-200 selection:text-primary-900">
+  <body class="bg-primary-50 text-slate-900 antialiased selection:bg-primary-200 selection:text-primary-900">
     <div id="root"></div>
   </body>
 </html>

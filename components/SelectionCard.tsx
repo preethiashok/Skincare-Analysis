@@ -24,19 +24,19 @@ export const SelectionCard: React.FC<SelectionCardProps> = ({
         relative overflow-hidden cursor-pointer rounded-2xl border-2 p-6 transition-all duration-200
         hover:shadow-lg hover:scale-[1.02] active:scale-[0.98]
         ${selected 
-          ? 'border-primary-500 bg-primary-50/50 shadow-md' 
-          : 'border-slate-100 bg-white shadow-sm hover:border-primary-200'}
+          ? 'border-primary-500 bg-primary-50 shadow-md ring-1 ring-primary-200' 
+          : 'border-white bg-white/80 shadow-sm hover:border-primary-300'}
       `}
     >
       <div className="flex items-start justify-between">
         <div className="flex flex-col gap-2">
             {icon && (
-                <div className={`p-2 rounded-lg w-fit ${selected ? 'bg-primary-100 text-primary-700' : 'bg-slate-100 text-slate-500'}`}>
+                <div className={`p-2 rounded-xl w-fit ${selected ? 'bg-primary-500 text-white shadow-sm' : 'bg-primary-50 text-primary-400'}`}>
                     {icon}
                 </div>
             )}
             <div>
-                <h3 className={`font-semibold text-lg ${selected ? 'text-primary-900' : 'text-slate-800'}`}>
+                <h3 className={`font-semibold text-lg ${selected ? 'text-primary-900' : 'text-slate-700'}`}>
                     {title}
                 </h3>
                 {description && (
@@ -48,8 +48,8 @@ export const SelectionCard: React.FC<SelectionCardProps> = ({
         </div>
         
         <div className={`
-          flex h-6 w-6 items-center justify-center rounded-full border transition-colors
-          ${selected ? 'border-primary-500 bg-primary-500 text-white' : 'border-slate-300 bg-transparent text-transparent'}
+          flex h-6 w-6 items-center justify-center rounded-full border-2 transition-colors
+          ${selected ? 'border-primary-500 bg-primary-500 text-white' : 'border-primary-100 bg-transparent text-transparent'}
         `}>
           <Check size={14} strokeWidth={3} />
         </div>

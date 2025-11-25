@@ -7,7 +7,7 @@ export const generateSkincareRoutine = async (profile: UserProfile): Promise<Rou
   const modelId = "gemini-2.5-flash";
 
   const prompt = `
-    Act as an expert dermatologist and skincare formulator.
+    Act as an expert dermatologist and skincare formulator with a touch of fun, friendly advice.
     Create a personalized skincare routine for a user with the following profile:
     - Name: ${profile.name}
     - Skin Type: ${profile.skinType}
@@ -15,15 +15,17 @@ export const generateSkincareRoutine = async (profile: UserProfile): Promise<Rou
     - Sensitive Skin: ${profile.sensitivity ? "Yes" : "No"}
 
     Please provide:
-    1. A brief analysis of their skin profile.
-    2. A Morning Routine (Steps, Product Types, Key Ingredients, benefits of ingredients, Reason, specific affordable market products).
-    3. An Evening Routine (Steps, Product Types, Key Ingredients, benefits of ingredients, Reason, specific affordable market products).
+    1. A brief, encouraging analysis of their skin profile.
+    2. A Morning Routine.
+    3. An Evening Routine.
     4. 3-5 Dietary/Lifestyle tips beneficial for their specific skin condition.
     5. A list of ingredients they should specifically avoid.
 
-    Be specific about ingredient concentrations where relevant (e.g., "2% Salicylic Acid").
-    Focus on evidence-based ingredients.
-    For market products, suggest widely available, affordable options (e.g. CeraVe, The Ordinary, Vanicream, etc.).
+    For each step in the routine:
+    - Specify Product Type and Key Ingredients.
+    - Explain ingredient benefits.
+    - Suggest specific affordable market products (e.g., CeraVe, The Ordinary, Vanicream, etc.).
+    - **CRITICAL**: For each market recommendation, provide 1-2 "substitutes" or alternative products that are similar in formulation and price point, in case the user cannot find the primary recommendation.
   `;
 
   try {
@@ -54,7 +56,12 @@ export const generateSkincareRoutine = async (profile: UserProfile): Promise<Rou
                       properties: {
                         name: { type: Type.STRING, description: "Product Name" },
                         brand: { type: Type.STRING, description: "Brand Name" },
-                        approxPrice: { type: Type.STRING, description: "Approximate price e.g. '$10-$15'" }
+                        approxPrice: { type: Type.STRING, description: "Approximate price e.g. '$10-$15'" },
+                        substitutes: { 
+                          type: Type.ARRAY, 
+                          items: { type: Type.STRING },
+                          description: "List of 1-2 specific alternative product names/brands similar to the main recommendation"
+                        }
                       }
                     }
                   }
@@ -79,7 +86,8 @@ export const generateSkincareRoutine = async (profile: UserProfile): Promise<Rou
                       properties: {
                         name: { type: Type.STRING },
                         brand: { type: Type.STRING },
-                        approxPrice: { type: Type.STRING }
+                        approxPrice: { type: Type.STRING },
+                        substitutes: { type: Type.ARRAY, items: { type: Type.STRING } }
                       }
                     }
                   }
